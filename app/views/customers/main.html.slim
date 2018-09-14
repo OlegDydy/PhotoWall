@@ -1,15 +1,80 @@
-- if !user_signed_in?
-  div class="page text-center"
-    div class="form-signin"
-      h1 Welcome
-      == link_to 'Login', new_user_session_path
-      |  or 
-      == link_to "Register", new_user_registration_path
-      p class="copyright"
-        | &copy 2018&ndash;
-        == Time.now.strftime("%Y")
-- else
-  span 
-    | Hi, 
-    == current_user.email
-  == link_to 'Logout', destroy_user_session_path, :method => :delete
+div class="container-fluid"
+  div class="row"
+    div class="user-panel panel-padding col-md-auto"
+      div class="circle"
+      - if user_signed_in?
+        p 
+          | Hi,
+          == current_user.email
+        == link_to 'Logout', destroy_user_session_path, :method => :delete
+    div class="panel-padding col"
+      h1 Orders
+      button class="btn btn-success"
+        | Order new artwork
+      div class="orders"
+
+        // example of card
+        div class="card"
+          button  class="card-header text-left" data-toggle="collapse" data-target="#order3" aria-expanded="false" aria-comtrols="order3"
+            h5
+              | Especially for X-files
+              span class="badge badge-success status-waiting"
+                | Waiting
+          div id="order3" class="card-body collapse"
+            == image_tag("NoImage.png")
+            div class="card-text float-left"
+              p Description what to do:
+              | Please, add an UFO to the photo. Thanks.
+              p class="price"
+                | Price: 
+                span Not priced yet.
+            
+            div class="float-right"
+              // Always
+              button class="btn btn-danger"
+                | Cancel order
+              //- if order.status == priced >> to_work
+              button class="btn btn-success"
+                | Accept
+              //- if order.status == completed >> paid
+              button class="btn btn-success"
+                | Pay
+              
+
+        div class="card float-bottom"
+          button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#completed_works" aria-expanded="false" aria-comtrols="completed_works"
+            | Completed works 
+            span class="badge badge-light babge-padding"
+              | 1
+          div id="completed_works" class="collapse"
+            // completed works or paid
+            div class="card"
+              button  class="card-header text-left" data-toggle="collapse" data-target="#order2" aria-expanded="false" aria-comtrols="order2"
+                h5
+                  | Real dino in the mountains of Arizona
+                  span class="badge badge-success status-waiting"
+                    | Paid
+                  span class="badge badge-"
+              div id="order2" class="card-body collapse"
+                == image_tag("NoImage.png")
+                div class="card-text float-left"
+                  p Description what to do:
+                  | Please, add a dino to the photo. Thanks.
+                  p class="price"
+                    | Price:
+                    span Paid
+                div class="float-right"
+                  //- if order.status == completed >> to_work
+                  a href="#" class="btn btn-primary"
+                    | Download
+    
+footer class="text-center border-top"
+  | &copy; 2018&ndash;
+  == Time.now.strftime("%Y")
+  |  
+  a href="#"
+    | EULA
+  |  
+  a href="#"
+    | About 
+  

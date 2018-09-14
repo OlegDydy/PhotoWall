@@ -8,10 +8,11 @@ html
     == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     == javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body class=controller.controller_name
-    - if notice
-      p class="notice"
-        == notice
-    - if alert
-      p class="alert"
-        == alert
+    /*
+      - if notice
+        p class="notice"
+          == notice
+      - if alert
+        p class="alert"
+          == alert
     == yield
