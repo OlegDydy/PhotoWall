@@ -1,0 +1,67 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ru:
+  logout: "Выйти"
+  
+  main:
+    #captions
+    orders_caption: "Заказы"
+    description_caption: "Описание что сделать:"
+
+    # buttons
+    cancel_btn: "Отменить заказ"
+
+    new_art_btn: "Заказать новую работу"
+    set_price_btn: "Установить цену"
+    accept_btn: "Принять"
+    pay_btn: "Оплатить"
+    download_btn: "Скачать"
+
+    # lines
+    welcome_msg: "Здравствуйте, "
+    price_prefix: "Цена: "
+    completed_caption: "Завершенные работы"
+
+    # statuses
+    order_status_new: "Ожидает"
+    order_status_priced: "Оценено"
+    order_status_WIP: "В процессе работы"
+    order_status_completed: "Выполнено"
+    order_status_paid: "Оплачено"
+
+    price_status_no_price: "Ещё не оценено"
+    price_status_paid: "Оплачено"
+
+    # place holders
+    fish_caption_1: "Цитрус на картинку"
+    fish_text_1: "В чащах юга жил бы цитрус? Да, но фальшивый экземпляр!"
+
