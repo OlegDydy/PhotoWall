@@ -1,25 +1,25 @@
 div class="page_login text-center"
   div class="form-signin"
-    == form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       // img
       p class="img-placeholder" ?
       
       h2 Log in
 
-      == f.label :email, :class => "sr-only"
-      == f.email_field :email, autofocus: true, autocomplete: "email", 
+      = f.label :email, :class => "sr-only"
+      = f.email_field :email, autofocus: true, autocomplete: "email", 
         :placeholder => :email
 
 
-      == f.label :password, :class => "sr-only"
-      == f.password_field :password, autocomplete: "current-password", 
+      = f.label :password, :class => "sr-only"
+      = f.password_field :password, autocomplete: "current-password", 
         :placeholder => :password
 
       - if devise_mapping.rememberable?
         div class="field"
-          == f.check_box :remember_me
-          == f.label :remember_me
+          = f.check_box :remember_me
+          = f.label :remember_me
 
       div class="actions"
-        == f.submit "Log in", :class => "btn btn-primary"
-    == render "devise/shared/links"
+        = f.submit "Log in", :class => "btn btn-primary"
+    = render "devise/shared/links"

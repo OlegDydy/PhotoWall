@@ -47,7 +47,7 @@ ru:
     download_btn: "Скачать"
 
     # lines
-    welcome_msg: "Здравствуйте, "
+    welcome_msg: "Здравствуйте, %{user_name}"
     price_prefix: "Цена: "
     completed_caption: "Завершенные работы"
 
