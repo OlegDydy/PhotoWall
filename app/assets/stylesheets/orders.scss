@@ -1,0 +1,57 @@
+// Place all the styles related to the customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.orders {
+
+    footer{
+        height: 40px;
+    }
+
+    .panel-padding{
+        padding: 16px;
+    }
+
+    .user-panel{
+        background: lightgray;
+        position: sticky;
+        height: calc(100vh - 40px);
+    }
+
+    .circle {
+        background: deepskyblue;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        display: inline-block;
+    }
+
+    .orders{
+        height: calc(100vh - 182px);
+        height-max: 450px;
+        box-shadow: 0 0 6px inset #0008;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top:16px;
+        
+        .card{
+            img{
+                width: 90px;
+                float: left;
+                margin-right: 16px;
+            }
+            .price{
+                font-size: 16pt;
+                font-weight: bold;
+                span{
+                    color:gray;
+                }
+            }
+        }
+
+        .badge{
+            padding: 4px 8px;
+            margin-left: 16px
+        }
+    }
+}
