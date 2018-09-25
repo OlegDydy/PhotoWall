@@ -40,13 +40,16 @@ en:
     completed_caption: "Completed artworks"
 
     # buttons
-    cancel_btn: "Cancel order"
-
     new_art_btn: "Order new artwork"
+
+    cancel_order_btn: "Cancel order"
     set_price_btn: "Set price"
+    set_completed_btn: "Complete"
     accept_btn: "Accept"
     pay_btn: "Pay"
+    reject_btn: "Reject"
     download_btn: "Download"
+    report: "Report about issue"
 
     # lines
     welcome_msg: "Hi, %{user_name}"
@@ -65,3 +68,11 @@ en:
     # place holders
     fish_caption_1: "Lorem Ipsum"
     fish_text_1: "Lorem ipsum dolore sit amet, consectetur adicipting elit."
+
+    new:
+      caption: "New Order"
+      order_btn: "Order"
+      cancel_btn: "Cancel"
+
+      order_name: "Order Name"
+      description: "Description"

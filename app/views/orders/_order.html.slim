@@ -1,0 +1,52 @@
+div class="card" id="card#{order.id}"
+  button  class="card-header text-left" data-toggle="collapse" data-target="#order#{order.id}" aria-expanded="false" aria-comtrols="order#{order.id}"
+    h5 
+      = order.caption
+      span class="badge badge-success status-waiting"
+        - case
+          - when (order.new?)
+            = t 'main.order_status_new'
+          - when (order.priced?)
+            = t 'main.order_status_priced'
+          - when (order.wip?)
+            = t 'main.order_status_WIP'
+          - when (order.completed?)
+            = t 'main.order_status_completed'
+          - when (order.paid?)
+            = t 'main.order_status_paid'
+  div id="order#{order.id}" class="card-body collapse"
+    = image_tag("NoImage.png")
+    div class="card-text float-left"
+      p = t 'main.description_caption'
+      = order.description
+      
+      - if !order.paid?
+        p class="price"
+          = t 'main.price_prefix'
+          - if order.new?
+            span = t 'main.price_status_no_price'
+          -else
+            span = order.price
+
+    div class="float-right"  
+      // & user.admin?
+      // Admin buttons
+      - if order.new?
+        //  :class => "btn btn-success",
+        = button_to t('main.set_price_btn'), orders_path({order_id: order, func: 'set_price'}), remote: true, :class => "btn btn-success"
+      - if order.wip?
+        = button_to t('main.set_completed_btn'), orders_path({order_id: order, func: 'complete_work'}), remote: true, :class => "btn btn-success"
+      // user buttons
+      - if order.priced?
+        = button_to t('main.accept_btn'), orders_path({order_id: order, func: 'accept_price'}), remote: true, :class => "btn btn-success"
+      - if order.completed?
+        = button_to t('main.pay_btn'), orders_path({order_id: order, func: 'pay'}), remote: true, :class => "btn btn-success"
+        = button_to t('main.reject_btn'), orders_path({order_id: order, func: 'reject'}), remote: true, :class => "btn btn-warning"
+      - if order.paid?
+        - if order.out_image_url == nil
+          = button_to t('main.report'), orders_path(), remote: true, :class => "btn btn-primary"
+        -else
+          = link_to t('main.download_btn'), order.out_image_url, :class => "btn btn-success"
+
+      - if !order.paid?
+        = button_to t('main.cancel_order_btn'), order, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"
