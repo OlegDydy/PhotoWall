@@ -26,12 +26,32 @@
         display: inline-block;
     }
 
+    #gallery{
+        display: flex;
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        padding: 5%;
+
+        background: #0005;
+        img{
+            display: inline-block;
+            margin: auto;
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+
     .orders{
         height: calc(100vh - 182px);
         height-max: 450px;
         box-shadow: 0 0 6px inset #0008;
         border-radius: 8px;
-        overflow: scroll;
+        overflow-y: scroll;
         margin-top:16px;
         
         .card{
@@ -39,6 +59,7 @@
                 width: 90px;
                 float: left;
                 margin-right: 16px;
+                cursor: pointer;
             }
             .price{
                 font-size: 16pt;

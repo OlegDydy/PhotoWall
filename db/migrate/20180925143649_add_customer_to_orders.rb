@@ -1,5 +1,5 @@
 class AddCustomerToOrders < ActiveRecord::Migration[5.2]
   def change
-    add_column :orders, :customer, :integer, default: 1
+    add_reference :orders, :user, index: true
   end
 end

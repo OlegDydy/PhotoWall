@@ -10,24 +10,18 @@ div class="container-fluid"
       h1 = t 'main.orders_caption'
       button class="btn btn-success" data-toggle="modal" data-target="#order_form" = t 'main.new_art_btn'
       div class="orders" id="orders_container"
-        - completed_count = 0
-        - selection = @orders.sort_by{|elem| elem.updated_at}.reverse
-        - selection.each do |order|
-          - if order.completed? || order.paid?
-            - completed_count += 1
-          - else
-            = render order
-        div class="card float-bottom"
+        = render @orders.waiting + @orders.priced + @orders.wip
+        div class="card"
           button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#completed_works" aria-expanded="false" aria-comtrols="completed_works"
             = t 'main.completed_caption'
             span class="badge badge-light babge-padding"
-              = completed_count
+              = @completed_count
           div id="completed_works" class="collapse"
-            - selection.each do |order|
-              - if order.completed? || order.paid?
-                = render order
+              = render (@orders.completed + @orders.paid)
       // modal
-      = render 'form'
+  = render 'form'
+  div id="gallery" style="display:none"
+    img
     
 footer class="text-center border-top"
   | &copy; 2018&ndash;

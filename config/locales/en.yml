@@ -34,6 +34,7 @@ en:
   logout: "Logout"
   
   main:
+
     #captions
     orders_caption: "Orders"
     description_caption: "Description what to do:"
@@ -54,11 +55,14 @@ en:
     # lines
     welcome_msg: "Hi, %{user_name}"
     price_prefix: "Price: "
+    confirmation: "Are you sure want to cancel order?"
+    order_succes: "Order successfully created"
+    order_error: "Something went wrong"
 
     # statuses
     order_status_new: "Waiting"
     order_status_priced: "Priced"
-    order_status_WIP: "In progress"
+    order_status_wip: "In progress"
     order_status_completed: "Completed"
     order_status_paid: "Paid"
 

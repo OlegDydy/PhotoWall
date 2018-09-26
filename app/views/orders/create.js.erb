@@ -1,7 +1,2 @@
-
-$('#card<%=@order.id%>').html("<%= escape_javascript render(@order) %>");
-<% if @order.paid? || @order.completed?  %>
-    $('#completed_works').prepend($('#card<%=@order.id%>'));
-<% else %>
-    $('#orders_container').prepend($('#card<%=@order.id%>'));
-<% end %>
+$('#card<%= @order.id %>').html("<%= escape_javascript render(@order) %>");
+$('#orders_container').prepend($('#card<%= @order.id %>'));
