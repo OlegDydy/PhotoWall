@@ -1,0 +1,50 @@
+div class="card" id="card#{order.id}"
+  button  class="card-header text-left" data-toggle="collapse" data-target="#order#{order.id}" aria-expanded="false" aria-comtrols="order#{order.id}"
+    h5 
+      = order.caption
+      span class="badge badge-success status-waiting"
+        - case
+          - when (order.waiting?)
+            = t 'main.order_status_new'
+          - when (order.priced?)
+            = t 'main.order_status_priced'
+          - when (order.wip?)
+            = t 'main.order_status_wip'
+          - when (order.completed?)
+            = t 'main.order_status_completed'
+          - when (order.paid?)
+            = t 'main.order_status_paid'
+  div id="order#{order.id}" class="card-body collapse"
+    - if order.out_image_url.nil?
+      = image_tag("NoImage.png")
+    - else
+      - if order.paid?
+        = image_tag(order.out_image_url, full_size: 'assets/' + order.out_image_url)
+      - else
+        = image_tag(order.out_image_url)
+      
+    div class="card-text float-left"
+      p = t 'main.description_caption'
+      = order.description
+      
+      - if !order.paid?
+        p class="price"
+          = t 'main.price_prefix'
+          - if order.waiting?
+            span = t 'main.price_status_no_price'
+          -else
+            span = number_to_currency(order.price)
+
+    div class="float-right"  
+      - if order.priced?
+        = button_to t('main.accept_btn'), order_path( order, state: "accepted" ), method: :put, class: "btn btn-success"
+      - if order.completed?
+        = button_to t('main.pay_btn'), order_path( order, state: "paid" ), method: :put, class: "btn btn-success"
+      - if order.paid?
+        - if order.out_image_url.nil?
+          = button_to t('main.report'), order, method: :put, class: "btn btn-primary"
+        -else
+          = link_to t('main.download_btn'), order.out_image_url, class: "btn btn-success"
+
+      - if order.waiting? || order.priced?
+        = button_to t('main.cancel_order_btn'), order_path( order, state: "canceled" ), method: :put, data: { confirm: t('main.confirmation')}, class: "btn btn-danger"

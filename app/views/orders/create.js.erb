@@ -1,0 +1,2 @@
+$('#card<%= @order.id %>').html("<%= escape_javascript render(@order) %>");
+$('#orders_container').prepend($('#card<%= @order.id %>'));
