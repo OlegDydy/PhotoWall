@@ -37,6 +37,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
 gem 'aasm'
 gem 'slim'
 gem 'jquery-rails'

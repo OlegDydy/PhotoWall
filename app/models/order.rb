@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  mount_uploader :in_image_url, ImageUploader
+  mount_uploader :out_image_url, ImageUploader
   include AASM
   belongs_to :user
 
