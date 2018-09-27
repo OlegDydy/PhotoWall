@@ -1,6 +1,6 @@
 div class="modal fade" id="order_form" tabindex="-1" role="dialog" aria-labelledby="order_form_title" aria-hidden="true"
   div class="modal-dialog modal-dialog-centered" role="document"
-    = form_with url: orders_path, :class => 'modal-content' do |form|
+    = form_with url: orders_path, html: { multipart: true }, :class => 'modal-content' do |form|
       div class="modal-header"
         h5 class="modal-title" id="exampleModalLongTitle" = t 'main.new.caption'
         button type="button" class="close" data-dismiss="modal" aria-label="Close"
@@ -15,7 +15,6 @@ div class="modal fade" id="order_form" tabindex="-1" role="dialog" aria-labelled
           = form.text_area :description , rows: 6, cols: 48, :placeholder => t('main.new.description')
 
         div class="field"
-          //= form.label :image_url, "URL изображения"
           = form.file_field :in_image_url
       div class="modal-footer"
         button type="button" class="btn btn-secondary" data-dismiss="modal" = t 'main.new.cancel_btn'
