@@ -4,6 +4,10 @@ class Order < ApplicationRecord
   include AASM
   belongs_to :user
 
+  def ready?
+    completed? || paid?
+  end
+
   aasm column: :state do
     state :waiting, initial: true
     state :priced

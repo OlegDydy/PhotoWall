@@ -15,18 +15,7 @@ div class="card" id="card#{order.id}"
           - when (order.paid?)
             = t 'main.order_status_paid'
   div id="order#{order.id}" class="card-body collapse"
-    -if order.paid? || order.completed?
-      - if order.out_image_url.file.nil?
-        = image_tag("NoImage.png")
-      - elsif order.paid?
-        = image_tag(order.out_image_url.url(:thumb), full_size: order.out_image_url)
-      - else
-        = image_tag(order.out_image_url.url(:thumb))
-    - else
-      - if order.in_image_url.file.nil?
-        = image_tag("NoImage.png")
-      - else
-        = image_tag(order.in_image_url.url(:thumb), full_size:order.in_image_url)
+    = order_image_tag(order)
       
     div class="card-text float-left"
       p = t 'main.description_caption'
