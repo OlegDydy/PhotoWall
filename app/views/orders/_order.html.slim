@@ -21,7 +21,7 @@ div class="card" id="card#{order.id}"
       - elsif order.paid?
         = image_tag(order.out_image_url.url(:thumb), full_size: order.out_image_url)
       - else
-        = image_tag(order.out_image_url)
+        = image_tag(order.out_image_url.url(:thumb))
     - else
       - if order.in_image_url.file.nil?
         = image_tag("NoImage.png")

@@ -15,7 +15,6 @@ div class="modal fade" id="order_form" tabindex="-1" role="dialog" aria-labelled
           = form.text_area :description , rows: 6, cols: 48, :placeholder => t('main.new.description')
 
         div class="field"
-          //= form.label :image_url, "URL изображения"
           = form.file_field :in_image_url
       div class="modal-footer"
         button type="button" class="btn btn-secondary" data-dismiss="modal" = t 'main.new.cancel_btn'
