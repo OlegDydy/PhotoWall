@@ -53,12 +53,8 @@ class OrdersController < ApplicationController
 
     def switch_state(target_state)
       case target_state
-      when "priced"
-        return @order.set_price!
       when "accepted"
         return @order.accept_price!
-      when "completed"
-        return @order.mark_as_completed!
       when "paid"
         return @order.pay_for!
       when "canceled"

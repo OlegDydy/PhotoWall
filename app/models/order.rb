@@ -4,6 +4,15 @@ class Order < ApplicationRecord
   include AASM
   belongs_to :user
 
+  attr_accessor :active_admin_requested_event
+
+  scope :waiting, ->{ where(state: 'waiting')}
+  scope :priced, ->{ where(state: 'priced')}
+  scope :work_in_progress, ->{ where(state: 'wip')}
+  scope :completed, ->{ where(state: 'completed')}
+  scope :paid, ->{ where(state: 'paid')}
+  scope :canceled, ->{ where(state: 'canceled')}
+
   def ready?
     completed? || paid?
   end

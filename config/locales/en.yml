@@ -33,6 +33,16 @@ en:
   hello: "Hello world"
   logout: "Logout"
   
+  admin:
+    forbidden: "Forbidden event #{event} requested on instance #{id}"
+    no_input_image: "Customer Not Upload Image"
+    no_output_image: "Not uploaded"
+
+    user_label: "User"
+    price_label: "Price"
+    input_label: "Image to process"
+    state_label: "Change state"
+
   main:
 
     #captions

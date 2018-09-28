@@ -38,7 +38,7 @@ div class="card" id="card#{order.id}"
         - if order.out_image_url.file.nil?
           = button_to t('main.report'), order, method: :put, class: "btn btn-primary"
         -else
-          = link_to t('main.download_btn'), order.out_image_url, class: "btn btn-success"
+          = link_to t('main.download_btn'), order.out_image_url.url, class: "btn btn-success", download: ""
 
       - if order.waiting? || order.priced?
         = button_to t('main.cancel_order_btn'), order_path( order, state: "canceled" ), method: :put, data: { confirm: t('main.confirmation')}, class: "btn btn-danger"
