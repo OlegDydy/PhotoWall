@@ -10,7 +10,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    root_url
+    if (resource.instance_of? AdminUser)
+      admin_dashboard_url
+    else
+      root_url
+    end
   end
 
 end
