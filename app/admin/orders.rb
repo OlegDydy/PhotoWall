@@ -19,12 +19,21 @@ ActiveAdmin.register Order do
 
   form do |f|
     inputs do
-      input :user, label: 'admin.user_label'
-      input :price, label: 'admin.price_label'
-      input :in_image_url, as: :file, label: 'admin.input_label',
-        input_html: { disabled: true }, hint: f.object.in_image_url.present? \
-        ? image_tag(f.object.in_image_url.url(:thumb))
-        : content_tag(:span, t('admin.no_input_image'))
+      input :user, label: t('admin.user_label'),
+        as: :select, collection: User.all.map{|user| [user.email, user.id]}
+      input :description, input_html: { readOnly: true }
+      input :price, label: t('admin.price_label')
+      
+      li do
+        label t('admin.input_label')
+        if f.object.in_image_url.present?
+          a href: f.object.in_image_url do
+            img src: f.object.in_image_url.url(:thumb)
+          end
+        else
+          span t('admin.no_input_image')
+        end
+      end
       
       input :out_image_url, as: :file, hint: f.object.out_image_url.present? \
         ? image_tag(f.object.out_image_url.url(:thumb))
@@ -37,6 +46,6 @@ ActiveAdmin.register Order do
     actions
   end
 
-  permit_params :active_admin_requested_event, :price, :out_image_url, :state
+  permit_params :user_id, :active_admin_requested_event, :price, :out_image_url, :state
 
 end
