@@ -1,3 +1,7 @@
+div class="message-container"
+  - if flash[:error].present?
+    div class="error-message"
+      = flash[:error]
 div class="container-fluid"
   div class="row"
     div class="user-panel panel-padding col-md-auto"

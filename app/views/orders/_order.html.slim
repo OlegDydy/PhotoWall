@@ -1,5 +1,11 @@
 div class="card" id="card#{order.id}"
-  button  class="card-header text-left" data-toggle="collapse" data-target="#order#{order.id}" aria-expanded="false" aria-comtrols="order#{order.id}"
+  button [
+    class="card-header text-left" 
+    data-toggle="collapse" 
+    data-target="#order#{order.id}" 
+    aria-expanded="#{@opened ? true : false}"
+    aria-comtrols="order#{order.id}"
+  ]
     h5 
       = order.caption
       span class="badge badge-success status-waiting"
@@ -14,7 +20,7 @@ div class="card" id="card#{order.id}"
             = t 'main.order_status_completed'
           - when (order.paid?)
             = t 'main.order_status_paid'
-  div id="order#{order.id}" class="card-body collapse"
+  div id="order#{order.id}" class="card-body collapse #{@opened ? 'show' : ''}"
     = order_image_tag(order)
       
     div class="card-text float-left"
@@ -27,13 +33,25 @@ div class="card" id="card#{order.id}"
           - if order.waiting?
             span = t 'main.price_status_no_price'
           -else
-            span = number_to_currency(order.price)
+            span = number_to_currency(order.price, locale: :en)
 
     div class="float-right"  
       - if order.priced?
-        = button_to t('main.accept_btn'), order_path( order, state: "accepted" ), method: :put, class: "btn btn-success"
+        = button_to t('main.accept_btn'), order_path( order, state: "accepted" ), method: :put, remote: true, class: "btn btn-success"
       - if order.completed?
-        = button_to t('main.pay_btn'), order_path( order, state: "paid" ), method: :put, class: "btn btn-success"
+        = form_tag order_path( order, state: "paid" ), method: :put
+          article
+            label class="amount"
+              span = t('main.amount', price: number_to_currency(order.price, locale: :en))
+          
+          script [src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-email = current_user.email
+            data-key=Rails.configuration.stripe[:publishable_key]
+            data-description=t('main.pay_description')
+            data-label=t('main.pay_btn')
+            data-amount="#{ (order.price * 100).round }"
+            data-locale="auto"
+            ]
       - if order.paid?
         - if order.out_image_url.file.nil?
           = button_to t('main.report'), order, method: :put, class: "btn btn-primary"
