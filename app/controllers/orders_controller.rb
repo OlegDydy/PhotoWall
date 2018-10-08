@@ -56,6 +56,18 @@ class OrdersController < ApplicationController
       when "accepted"
         return @order.accept_price!
       when "paid"
+        customer = Stripe::Customer.create(
+          email: params[:stripeEmail],
+          source: params[:stripeToken]
+        )
+
+        charge = Stripe::Charge.create(
+          customer: customer.id,
+          amount: (@order.price * 100).round,
+          description: "Customer #{current_user.email} paid for \"#{@order.caption}\"",
+          currency: 'usd'
+        )
+
         return @order.pay_for!
       when "canceled"
         return @order.cancel!
@@ -63,5 +75,9 @@ class OrdersController < ApplicationController
         # unknown function
         return false;
       end
+
+      rescue Stripe::CardError => e
+        flash[:error] = e.message
+        return false;
     end
 end

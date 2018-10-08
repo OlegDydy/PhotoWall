@@ -1,5 +1,6 @@
-
-$('#card<%= @order.id %>').html("<%= escape_javascript render(@order) %>");
+var opened = $("#card3 button")[0].getAttribute("aria-expanded")
+$('#card<%= @order.id %>').replaceWith("<%= @opened=true; escape_javascript render(@order) %>");
+$("#card3 button")[0].getAttribute("aria-expanded")
 <% if @order.paid? || @order.completed?  %>
     $('#completed_works').prepend($('#card<%= @order.id %>'));
 <% else %>

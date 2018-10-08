@@ -44,7 +44,8 @@ en:
     state_label: "Change state"
 
   main:
-
+    amount: "Amount: %{price}"
+    pay_description: "Pay for artwork"
     #captions
     orders_caption: "Orders"
     description_caption: "Description what to do:"
@@ -57,7 +58,7 @@ en:
     set_price_btn: "Set price"
     set_completed_btn: "Complete"
     accept_btn: "Accept"
-    pay_btn: "Pay"
+    pay_btn: "Pay with Card"
     reject_btn: "Reject"
     download_btn: "Download"
     report: "Report about issue"

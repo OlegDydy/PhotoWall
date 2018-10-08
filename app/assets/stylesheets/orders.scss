@@ -4,6 +4,33 @@
 
 .orders {
 
+    @keyframes message-hide {
+        from{
+            top: 20px;
+        }
+        to{
+            top: -55px;
+        }
+    }
+    .message-container{
+        position:absolute;
+        z-index: 1;
+        width: 100%;
+        text-align: center;
+
+        .error-message{
+            display: inline-block;
+            background: rgb(255, 49, 49);
+            color: white;
+            position: relative;
+            z-index: 1;
+            border-radius: 5px;
+            padding: 5px 15px;
+            animation: message-hide 0.5s 5s;
+            animation-fill-mode: both;
+        }
+    }
+    
     footer{
         height: 40px;
     }
